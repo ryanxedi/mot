@@ -98,11 +98,7 @@
         </style>
     </head>
     <body>
-        <?php 
 
-            $registration = $carsInformation['registration'];
-            dd($registration);
-        ?>
 
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
@@ -123,7 +119,9 @@
 
             <div class="content">
                 <div class="title m-b-md">Your MOT History</div>
-
+                @foreach($carsInformation as $carInformation)
+                    {{$registration}}
+                @endforeach
         </div>
     </body>
 
