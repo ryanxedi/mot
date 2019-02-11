@@ -120,8 +120,9 @@
             <div class="content">
                 <div class="title m-b-md">Your MOT History</div>
                 @foreach($carsInformation as $carInformation)
-                    {{$registration}}
+                    <?php dd($carInformation); ?>
                 @endforeach
+
         </div>
     </body>
 
