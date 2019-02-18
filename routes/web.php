@@ -15,6 +15,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('/car', 'MOTController@results');
+Route::post('/your-car', 'MOTController@results');
 
-Route::get('/home', 'HomeController@index')->name('home');

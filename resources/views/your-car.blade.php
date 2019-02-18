@@ -3,37 +3,10 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>MOT App</title>
-
-        <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
-
-        <!-- Styles -->
-        <script src="jquery-1.8.3.min.js"></script>
-
-        <script>
-            jQuery(function($){
-                $('#numberPlate').keyup(function(e){
-                    if (e.which === 32) {
-                        alert('No space are allowed in usernames');
-                        var str = $(this).val();
-                        str = str.replace(/\s/g,'');
-                        $(this).val(str);            
-                    }
-                }).blur(function() {
-                    var str = $(this).val();
-                    str = str.replace(/\s/g,'');
-                    $(this).val(str);            
-                });
-            });
-        </script>
-
     </head>
     <body>
-
-
         <div style="padding:60px 0" class="flex-center">
             <div class="content">
                 @foreach($carsInformation as $carInformation)
@@ -50,26 +23,21 @@
                     </h2> 
                    
                     @foreach($carInformation->motTests as $motTest)
-                        <div style="
-                                background:rgba(0,0,0,0.1); 
-                                border-radius: 5px; margin:15px 0; 
-                                border:1px rgba(0,0,0,0.2) solid;
-                                padding:20px 0">
-                            
+                        <?php $date = DateTime::createFromFormat('Y.m.d G:i:s', $motTest->completedDate)->format('F j, Y'); ?>
+                        <div class="fade">
                             @if ($motTest->testResult === 'PASSED')
-                                <h3 style="color:green"> {{ $motTest->testResult }}</h3>
+                                <h2 style="color:green; text-transform: uppercase;"> {{ $motTest->testResult }} on {{ $date }}</h2>
                             @else
-                                <h3 style="color:red"> {{ $motTest->testResult }}</h3>
+                                <h2 style="color:red; text-transform: uppercase;"> {{ $motTest->testResult }} on {{ $date }}</h2>
                             @endif                            
 
-                            {{ $motTest->completedDate }}<br>
-                            {{ $motTest->odometerValue }} 
+                            <h3>{{ $motTest->odometerValue }}
                             @if ($motTest->odometerUnit === 'mi')
-                                {{ 'miles' }}
+                                {{ 'miles' }}</h3> 
                             @else
-                                {{ 'kilometers' }}
+                                {{ 'kilometers' }}</h3> 
                             @endif 
-                            <h3>Comments:</h3>
+
                             @foreach($motTest->rfrAndComments as $rfrAndComment)
                                 {{ $rfrAndComment->type }}: {{ $rfrAndComment->text }} 
                                 @if ($rfrAndComment->dangerous === true) 
@@ -80,7 +48,8 @@
                         </div>
                      @endforeach
                 @endforeach
+                <a href="/">Start again</a>
+            </div>
         </div>
     </body>
-
 </html>
