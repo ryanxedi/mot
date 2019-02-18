@@ -11,6 +11,7 @@
 
         <!-- Styles -->
         <script src="jquery-1.8.3.min.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
         <script>
         jQuery(function($){
@@ -119,7 +120,7 @@
                 @csrf
                     <input name="registration" maxlength="7" id="registration" class="numberplate" placeholder="Your Reg">
                     <br>
-                    <button class="btn btn-primary" type="submit">Lets go</button>                    
+                    <button class="btn btn-primary" style="margin:20px 0; width:60%" type="submit">Lets go</button>                    
                 </div>
             </div>
         </div>

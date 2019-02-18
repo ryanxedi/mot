@@ -91,16 +91,19 @@
                 font-family:UKNumberPlate; 
                 font-size:170px; 
                 text-align: center; 
-                width:750px; 
-                height:180px;
+                width:740px; 
+                height:165px;
                 border: 3px solid #666;
+                color:#333;
+                padding-bottom: 50px;
             }
         </style>
+
     </head>
     <body>
 
 
-        <div class="flex-center position-ref full-height">
+        <div style="padding:60px 0" class="flex-center">
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
@@ -115,12 +118,51 @@
                 </div>
             @endif
 
-
-
             <div class="content">
-                <div class="title m-b-md">Your MOT History</div>
                 @foreach($carsInformation as $carInformation)
-                    <?php dd($carInformation); ?>
+                    <div class="numberplate">
+                        {{ $carInformation->registration }}
+                    </div>
+                    <h2>
+                        <?php $year = substr($carInformation->firstUsedDate, 0, 4) ?>
+                        {{ $year }} 
+                        {{ $carInformation->make }} 
+                        {{ $carInformation->model }} 
+                        {{ $carInformation->fuelType }} in 
+                        {{ $carInformation->primaryColour }}
+                    </h2> 
+                   
+                    @foreach($carInformation->motTests as $motTest)
+                        <div style="
+                                background:rgba(0,0,0,0.1); 
+                                border-radius: 5px; margin:15px 0; 
+                                border:1px rgba(0,0,0,0.2) solid;
+                                padding:20px 0">
+                            
+                            @if ($motTest->testResult === 'PASSED')
+                                <h3 style="color:green"> {{ $motTest->testResult }}</h3>
+                            @else
+                                <h3 style="color:red"> {{ $motTest->testResult }}</h3>
+                            @endif                            
+
+                            {{ $motTest->completedDate }}<br>
+                            {{ $motTest->odometerValue }} 
+                            @if ($motTest->odometerUnit === 'mi')
+                                {{ 'miles' }}
+                            @else
+                                {{ 'kilometers' }}
+                            @endif 
+                            <h3>Comments:</h3>
+                            @foreach($motTest->rfrAndComments as $rfrAndComment)
+                                {{ $rfrAndComment->type }}: {{ $rfrAndComment->text }} 
+                                @if ($rfrAndComment->dangerous === true) 
+                                {{ 'DANGEROUS' }}<br>
+                                @else <br>
+                                @endif
+                            @endforeach
+                        </div>
+                     @endforeach
+<!--                     <?php dd($motTest); ?> -->
                 @endforeach
 
         </div>

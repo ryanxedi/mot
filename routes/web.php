@@ -17,6 +17,4 @@ Route::get('/', function () {
 
 Route::post('/car', 'MOTController@results');
 
-Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
