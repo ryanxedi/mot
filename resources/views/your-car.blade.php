@@ -1,4 +1,4 @@
-@include('layouts\header')
+@extends('layouts.header')
  
   <body class="d-flex flex-column h-100">
     <header>
@@ -80,4 +80,4 @@
       <span class="text-muted">&copy; 2019 - Check Your MOT</span>
     </div>
   </footer>
-@include('layouts\footer')
+@extends('layouts.footer')

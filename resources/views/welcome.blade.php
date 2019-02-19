@@ -1,8 +1,8 @@
-@include('layouts\header')
+@extends('layouts.header')
  
   <body class="d-flex flex-column h-100">
 
-  <main role="main" class="flex-shrink-0" style="align-items:center;">>
+  <main role="main" class="flex-shrink-0" style="align-items:center;">
     <div class="container" style="text-align: center;">
       <img src="svg/logo-front.svg" class="logo">
         <form method="POST" action="your-car">
@@ -26,5 +26,5 @@
           <h3 style="color:#444">Enter your registration number above to get a full MOT history of your car</h3>
     </div>
   </main>
- 
-@include('layouts\footer')
+
+@extends('layouts.footer')

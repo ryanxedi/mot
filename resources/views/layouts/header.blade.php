@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Enter your registration number to get a full MOT history of your car">
 
+    <meta property="og:image" content="https://checkmymot.uk/og-image.png">
+    <meta property="og:description" content="Enter your registration number to get a full MOT history of your car">
+
     <link rel="icon" type="image/png" href="favicon.png">
 
     <title>Check My MOT</title>
