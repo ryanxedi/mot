@@ -27,7 +27,7 @@
       .bd-placeholder-img-lg {font-size: 3.5rem;}
       .numberplate {font-size: 7em;}
       .result {font-size:3.2em;}
-      .logo {width:60%;}
+      .logo {width:60%; padding-bottom:40px;}
       }
 
       main > .container {
