@@ -25,7 +25,7 @@
  
       @media (min-width: 768px) {
       .bd-placeholder-img-lg {font-size: 3.5rem;}
-      .numberplate {font-size: 8em;}
+      .numberplate {font-size: 7em;}
       .result {font-size:3.2em;}
       }
 
