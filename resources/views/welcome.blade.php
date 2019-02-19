@@ -27,6 +27,7 @@
       .bd-placeholder-img-lg {font-size: 3.5rem;}
       .numberplate {font-size: 7em;}
       .result {font-size:3.2em;}
+      .logo {width:60%;}
       }
 
       main > .container {
@@ -61,7 +62,7 @@
 
   <main role="main" class="flex-shrink-0">
     <div class="container" style="text-align: center">
-      <h1 style="padding:40px 0 ">Enter your Registration Number</h1>
+      <img src="svg/logo-front.svg" class="logo">
         <form method="POST" action="your-car">
           @csrf
               <input autofocus
@@ -74,7 +75,7 @@
                   style="width:100%"
                   >
               <br>
-              <button class="btn btn-primary" style="margin:20px 0; width:60%;" type="submit">Lets go</button>
+              <button class="btn btn-primary" style="margin:40px 0; width:60%;" type="submit">Lets go</button>
               <br> 
               @if (\Session::has('error'))
                   <span style="color:red; text-align:center"> {!! \Session::get('error') !!} </span>

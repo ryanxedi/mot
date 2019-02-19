@@ -62,7 +62,7 @@
                 background:yellow; 
                 border-radius: 5px; 
                 font-family:UKNumberPlate; 
-                font-size:4em; 
+                font-size:3em; 
                 text-align: center; 
                 border: 3px solid #666;
                 color:#333;
@@ -77,6 +77,8 @@
                 line-height: 1.5em;
                 text-align:center;
             }
+
+            .logo {width:80%; margin-bottom:40px;}
 
             .Aligner {
               display: flex;
