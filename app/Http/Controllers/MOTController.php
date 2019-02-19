@@ -27,7 +27,7 @@ class MOTController extends Controller
             return view('your-car', compact('carsInformation', 'registration'));
         }
         else {
-          return redirect()->back()->with('error', 'This registration was not found');  
+          return redirect('/')->with('error', 'This registration was not found');  
         }
 
     }
