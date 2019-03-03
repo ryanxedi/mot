@@ -38,7 +38,10 @@
             {{ $carInformation->registration }}
         </div>
         <h2 style="text-align:center; margin:30px 0; font-weight: bold">
-            <?php $year = substr($carInformation->firstUsedDate, 0, 4) ?>
+            <?php 
+              isset($v['$carInformation->firstUsedDate']) ? $v['$carInformation->firstUsedDate'] : 'empty';
+              $year = substr($carInformation->firstUsedDate, 0, 4) 
+            ?>
             {{ $year }} 
             {{ $carInformation->make }} 
             {{ $carInformation->model }} 
@@ -77,7 +80,7 @@
  
   <footer class="footer mt-auto py-3">
     <div class="container">
-      <span class="text-muted">&copy; 2019 - Check Your MOT</span>
+      <span class="text-muted">&copy; <?php echo date('Y') ?>- Check Your MOT</span>
     </div>
   </footer>
 @extends('layouts.footer')
