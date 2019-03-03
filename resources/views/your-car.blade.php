@@ -38,10 +38,15 @@
             {{ $carInformation->registration }}
         </div>
         <h2 style="text-align:center; margin:30px 0; font-weight: bold">
-            <?php 
-              $year = isset($v['$carInformation->firstUsedDate']) ? $v['$carInformation->firstUsedDate'] : 'empty';
-              $year = substr($carInformation->firstUsedDate, 0, 4) 
+
+            <?php
+            if(!empty($carInformation->firstUsedDate)) {
+              $year = substr($carInformation->firstUsedDate, 0, 4); }
+            else {
+              header( "Location: not-found" ); die;
+            }
             ?>
+
             {{ $year }} 
             {{ $carInformation->make }} 
             {{ $carInformation->model }} 
