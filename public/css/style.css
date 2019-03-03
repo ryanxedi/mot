@@ -1,5 +1,6 @@
 @font-face {
   font-family: 'UKNumberPlate';
+  font-display: auto;
   src: url('/fonts/UKNumberPlate.ttf');
 }
 
