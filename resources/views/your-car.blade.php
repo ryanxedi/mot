@@ -39,7 +39,7 @@
         </div>
         <h2 style="text-align:center; margin:30px 0; font-weight: bold">
             <?php 
-              isset($v['$carInformation->firstUsedDate']) ? $v['$carInformation->firstUsedDate'] : 'empty';
+              echo isset($v['$carInformation->firstUsedDate']) ? $v['$carInformation->firstUsedDate'] : 'empty';
               $year = substr($carInformation->firstUsedDate, 0, 4) 
             ?>
             {{ $year }} 
