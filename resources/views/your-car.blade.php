@@ -85,7 +85,7 @@
  
   <footer class="footer mt-auto py-3">
     <div class="container">
-      <span class="text-muted">&copy; <?php echo date('Y') ?>- Check Your MOT</span>
+      <span class="text-muted">&copy; <a href="https://checkyourmot.uk">Check Your MOT</a> <?php echo date('Y') ?></span>
     </div>
   </footer>
 @extends('layouts.footer')
