@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Enter your registration number to get a full MOT history of your car">
 
+    <meta name="google-site-verification" content="Zg2SBQmwnVVy6QAzYkCpE4FC_667mZsSgON2lXL5rc4" />
+
     <meta property="og:url" content="https://checkmymot.uk">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Check My MOT - Your MOT History Without the Fuss">
