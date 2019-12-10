@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Redirect;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Psr7;
-
+use DateTime;
+use Carbon\Carbon;
 
 class MOTController extends Controller
 {
@@ -22,9 +23,19 @@ class MOTController extends Controller
         
         $statuscode = $response->getStatusCode();
 
+
         if (200 === $statuscode) {
           $carsInformation = (json_decode((string) $response->getBody()));
-            return view('your-car', compact('carsInformation', 'registration'));
+          $completedDate = $carsInformation[0]->motTests[0]->completedDate;
+
+          $expiryDate = Carbon::createFromFormat('Y.m.d G:i:s', $completedDate)->addYears(1)->format('j F Y');
+          if ($expiryDate >= Carbon::now()) {
+                $expired = 1;
+            }else {
+                $expired = 0;
+            };
+
+            return view('your-car', compact('carsInformation', 'registration', 'expiryDate', 'expired'));
         }
         else {
           return redirect('/')->with('error', 'This registration was not found');  

@@ -54,6 +54,18 @@
             {{ $carInformation->primaryColour }}
         </h2> 
        
+
+        @if ( $expired === 0 )
+        <div class="result" style="background-color: green">
+          <h2 style="color:white; text-transform: uppercase; text-align: center;"> Your MOT will expire on <span style="font-weight: bold">{{ $expiryDate }}</span></h2>
+        </div>
+        @else
+        <div class="result" style="background-color: red">
+          <h2 style="color:white; text-transform: uppercase; text-align: center;"> Your MOT expired on <span style="font-weight: bold">{{ $expiryDate }}</span></h2>
+        </div>
+        @endif     
+
+
         @foreach($carInformation->motTests as $motTest)
             <?php $date = DateTime::createFromFormat('Y.m.d G:i:s', $motTest->completedDate)->format('F j, Y'); ?>
             <div class="result">
