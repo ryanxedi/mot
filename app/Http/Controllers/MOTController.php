@@ -29,7 +29,7 @@ class MOTController extends Controller
           $completedDate = $carsInformation[0]->motTests[0]->completedDate;
 
           $expiryDate = Carbon::createFromFormat('Y.m.d G:i:s', $completedDate)->addYears(1)->format('j F Y');
-          if ($expiryDate >= Carbon::now()) {
+          if ($expiryDate >= Carbon::now()->format('j F Y')) {
                 $expired = 1;
             }else {
                 $expired = 0;
