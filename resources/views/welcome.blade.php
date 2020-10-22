@@ -5,8 +5,7 @@
   <main role="main" class="flex-shrink-0" style="align-items:center;">
     <div class="container" style="text-align: center;">
       <img src="svg/logo-front.svg" class="logo">
-        <form method="POST" action="your-car">
-          @csrf
+        <form method="GET" action="your-car">
               <input autofocus
                   name="registration" 
                   maxlength="7" 

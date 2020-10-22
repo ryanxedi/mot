@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('/your-car', 'MOTController@results');
+Route::get('/your-car', 'MOTController@results');
 
 Route::get('/not-found', function () {
     return redirect('/')->with('error', 'This registration was not found');  
