@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('registration');
             $table->datetime('expires');
+            $table->datetime('last_sent')->nullable();
             $table->timestamps();
         });
     }

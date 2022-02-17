@@ -11,14 +11,18 @@ class ReminderEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $email;
+    public $registration;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($email, $registration)
     {
-        //
+        $this->email = $email;
+        $this->registration = $registration;
     }
 
     /**
@@ -28,6 +32,7 @@ class ReminderEmail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('mail.reminder');
+        return $this->subject('Your MOT is due in 30 days')
+            ->markdown('mail.reminder');
     }
 }
