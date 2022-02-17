@@ -20,6 +20,6 @@
       </center>
     </div>
     @endif
-    <h2 style="color:#444">Enter your registration number above to get a full MOT history of your car</h2>
+    <h2 style="color:#444">Enter your registration number above to get the full MOT history of your car</h2>
   </div>
 </x-app>

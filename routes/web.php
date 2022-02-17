@@ -16,7 +16,7 @@ use App\Http\Controllers\ReminderController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Route::get('/your-car', [MOTController::class, 'results']);
