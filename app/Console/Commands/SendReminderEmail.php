@@ -41,8 +41,7 @@ class SendReminderEmail extends Command
      */
     public function handle()
     {
-        $reminders = Reminder::where('expires', '=<', Carbon::now()->subMonth(1))
-        ->get();
+        $reminders = Reminder::where('expires', Carbon::now()->subMonth(1))->get();
 
         foreach ($reminders as $reminder) {
             Mail::to($reminder->email)
