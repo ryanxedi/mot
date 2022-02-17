@@ -10,12 +10,11 @@ html, body {
     font-weight: 200;
     height: 100vh;
     margin: 0;
-
-background: #f2f9fe; /* Old browsers */
-background: -moz-radial-gradient(center, ellipse cover, #f2f9fe 0%, #d6f0fd 100%); /* FF3.6-15 */
-background: -webkit-radial-gradient(center, ellipse cover, #f2f9fe 0%,#d6f0fd 100%); /* Chrome10-25,Safari5.1-6 */
-background: radial-gradient(ellipse at center, #f2f9fe 0%,#d6f0fd 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f9fe', endColorstr='#d6f0fd',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    background: #f2f9fe; /* Old browsers */
+    background: -moz-radial-gradient(center, ellipse cover, #f2f9fe 0%, #d6f0fd 100%); /* FF3.6-15 */
+    background: -webkit-radial-gradient(center, ellipse cover, #f2f9fe 0%,#d6f0fd 100%); /* Chrome10-25,Safari5.1-6 */
+    background: radial-gradient(ellipse at center, #f2f9fe 0%,#d6f0fd 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f9fe', endColorstr='#d6f0fd',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
 
 .full-height {
@@ -61,26 +60,31 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f9fe', end
 }
 
 .numberplate {
-    background:yellow; 
-    border-radius: 5px; 
+    background:yellow !important; 
+    border-radius: 10px; 
     font-family:UKNumberPlate; 
     font-size:3em; 
     text-align: center; 
-    border: 3px solid #666;
+    border: 5px solid #0D66D0;
     color:#333;
+    width:100%
 }
 
 .result {
     background:rgba(0,0,0,0.1); 
-    border-radius: 5px; margin:15px 0; 
+    border-radius: 5px;
+    margin:15px 0; 
     border:1px rgba(0,0,0,0.2) solid;
-    padding:20px 0;
+    padding:25px 0;
     color:#333;
     line-height: 1.5em;
     text-align:center;
+    font-size: 1.3em;
 }
 
-.logo {width:60%; margin-bottom:60px;}
+.logo {
+    width:60%;
+}
 
 .bd-placeholder-img {
     font-size: 1.125rem;

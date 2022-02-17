@@ -1,5 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MOTController;
+use App\Http\Controllers\ReminderController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,8 +19,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/your-car', 'MOTController@results');
-
-Route::get('/not-found', function () {
-    return redirect('/')->with('error', 'This registration was not found');  
-});
+Route::get('/your-car', [MOTController::class, 'results']);
+Route::post('/reminder', [ReminderController::class, 'reminder']);

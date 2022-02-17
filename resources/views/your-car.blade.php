@@ -1,103 +1,104 @@
-@extends('layouts.header')
- 
-  <body class="d-flex flex-column h-100">
-    <header>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-          <a class="navbar-brand" href="/"><img src="svg/logo.svg" width="250"></a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
- 
-          <div class="collapse navbar-collapse mr-auto" id="navbarsExample07">
-            <ul class="navbar-nav mr-auto">
-              
-            </ul>
-            <form class="form-inline mt-2 mt-md-0" method="POST" action="/your-car">
-              @csrf
-              <input 
-                style="text-transform: uppercase; font-family:UKNumberPlate; 
-                background:yellow" 
-                class="form-control mr-sm-2" 
-                id="registration" 
-                name="registration" 
-                maxlength="7" 
-                placeholder="YOUR REG" 
-                aria-label="Search" 
-                autofocus>
-              <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Lets Go</button>
-            </form>
-          </div>
-        </div>
-      </nav>
-    </header>
-  <main role="main" class="flex-shrink-0">
-    <div class="container">
-      @foreach($carsInformation as $carInformation)
-        <div class="numberplate">
-            {{ $carInformation->registration }}
-        </div>
-        <h2 style="text-align:center; margin:30px 0; font-weight: bold">
+<x-app>
+  <div class="container py-2">
+    <div class="mb-3">
+      <center>
+        <img src="svg/logo-front.svg" class="logo">
+      </center>
+    </div>
+    <form action="/your-car" method="get" class="my-3">
+      <div class="input-group mb-3">
+        <input type="text" class="form-control numberplate" name="registration" value="{{ $registration }}" aria-describedby="registration" maxlength="7">
+        <button class="btn btn-primary" type="submit" id="registration" style="border-radius: 0 7px 7px 0">
+          <i class="bi bi-caret-right-fill" style="font-size: 2.5em;"></i><br>
+        </button>
+      </div>
+    </form>
 
-            <?php
-            if(!empty($carInformation->firstUsedDate)) {
-              $year = substr($carInformation->firstUsedDate, 0, 4); }
-            else {
-              header( "Location: not-found" ); die;
-            }
-            ?>
+    @if (session('status'))
+      <center>
+        <h3 style="color:green">
+          <i class="bi bi-check-circle-fill my-2" style="font-size:3em"></i>
+          <br>{{ session('status') }}
+        </h3>
+      </center>
+    @else
+    <form action="/reminder" method="post">
+      @csrf
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">@</span>
+        <input type="email" class="form-control" name="email" value="{{ old('email') }}"
+               placeholder="Email address" aria-label="Email address" aria-describedby="reminder" 
+               style="height:50px; font-size:1.2em">
+        <input type="hidden" name="registration" value="{{ $registration }}">
+        <input type="hidden" name="expires" value="{{ $expiryDateFormat }}">
+        <button class="btn btn-primary" type="submit" id="reminder">
+          <i class="bi bi-send-fill mx-1"></i>          
+          Remind me 
+        </button>
+      </div>
+    </form>
+    @endif
+    @if ($errors->first('email'))
+      <span style="color:red">{{ $errors->first('email') }}</span>
+    @endif
 
-            {{ $year }} 
-            {{ $carInformation->make }} 
-            {{ $carInformation->model }} 
-            {{ $carInformation->fuelType }} in 
-            {{ $carInformation->primaryColour }}
-        </h2> 
-       
+    <h1 style="text-align:center; margin:30px 0; font-weight: bold">
+      {{ substr($carsInformation['firstUsedDate'], 0, 4) }} 
+      {{ $carsInformation['make'] }} {{ $carsInformation['model'] }} 
+      {{ $carsInformation['fuelType'] }} 
+      in 
+      {{ $carsInformation['primaryColour'] }}
+    </h1> 
 
-        @if ( $expired === 0 )
-        <div class="result" style="background-color: green">
-          <h2 style="color:white; text-transform: uppercase; text-align: center;"> Your MOT will expire on <span style="font-weight: bold">{{ $expiryDate }}</span></h2>
-        </div>
+    @if ( $expired === 0 )
+      <div class="result" style="background-color: green">
+        <h2 style="color:white; text-transform: uppercase; text-align: center;">
+          Your MOT will expire on <span style="font-weight: bold">{{ $expiryDate }}</span>
+        </h2>
+      </div>
+    @else
+      <div class="result" style="background-color: red">
+        <h2 style="color:white; text-transform: uppercase; text-align: center;">
+          Your MOT expired on <span style="font-weight: bold">{{ $expiryDate }}</span>
+        </h2>
+      </div>
+    @endif     
+
+    @foreach($carsInformation['motTests'] as $motTest)
+      @php 
+        $date = DateTime::createFromFormat('Y.m.d G:i:s', $motTest['completedDate'])->format('F j, Y');
+      @endphp
+      <div class="result">
+        @if ($motTest['testResult'] === 'PASSED')
+          <h2 style="color:green; text-transform: uppercase;">
+            {{ $motTest['testResult'] }} on {{ $date }}
+          </h2>
         @else
-        <div class="result" style="background-color: red">
-          <h2 style="color:white; text-transform: uppercase; text-align: center;"> Your MOT expired on <span style="font-weight: bold">{{ $expiryDate }}</span></h2>
-        </div>
-        @endif     
-
-
-        @foreach($carInformation->motTests as $motTest)
-            <?php $date = DateTime::createFromFormat('Y.m.d G:i:s', $motTest->completedDate)->format('F j, Y'); ?>
-            <div class="result">
-                @if ($motTest->testResult === 'PASSED')
-                    <h2 style="color:green; text-transform: uppercase;"> {{ $motTest->testResult }} on {{ $date }}</h2>
-                @else
-                    <h2 style="color:red; text-transform: uppercase;"> {{ $motTest->testResult }} on {{ $date }}</h2>
-                @endif                            
-
-                <h3>{{ $motTest->odometerValue }}
-                @if ($motTest->odometerUnit === 'mi')
-                    {{ 'miles' }}</h3> 
-                @else
-                    {{ 'kilometers' }}</h3> 
-                @endif 
-
-                @foreach($motTest->rfrAndComments as $rfrAndComment)
-                    {{ $rfrAndComment->type }}: {{ $rfrAndComment->text }} 
-                    @if ($rfrAndComment->dangerous === true) 
-                    {{ 'DANGEROUS' }}<br>
-                    @else <br>
-                    @endif
-                @endforeach
-            </div>
-         @endforeach
+          <h2 style="color:red; text-transform: uppercase;">
+            {{ $motTest['testResult'] }} on {{ $date }}
+          </h2>
+        @endif                            
+        <h3>{{ number_format($motTest['odometerValue']) }}
+          @if ($motTest['odometerUnit'] === 'mi')
+              {{ 'miles' }}
+          @else
+              {{ 'kilometers' }}
+          @endif 
+        </h3>
+        @foreach($motTest['rfrAndComments'] as $rfrAndComment)
+          {{ $rfrAndComment['type'] }}: {{ $rfrAndComment['text'] }} 
+          @if (isset($rfrAndComment['dangerous'])) 
+            DANGEROUS
+          @endif
+          <br>
+        @endforeach
+      </div>
     @endforeach
-    </div>
-  </main>
+    <footer class="py-3 text-center">
+        <span class="text-muted">
+          &copy; <a href="https://checkmyrmot.uk">Check My MOT</a> {{ date('Y') }}
+        </span>
+    </footer>
+  </div>
+</x-app>
  
-  <footer class="footer mt-auto py-3">
-    <div class="container">
-      <span class="text-muted">&copy; <a href="https://checkmyrmot.uk">Check My MOT</a> <?php echo date('Y') ?></span>
-    </div>
-  </footer>
-@extends('layouts.footer')
