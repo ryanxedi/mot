@@ -13,42 +13,57 @@
         </button>
       </div>
     </form>
-
     @if (session('status'))
-      <center>
-        <h3 style="color:green">
-          <i class="bi bi-check-circle-fill my-2" style="font-size:3em"></i>
-          <br>{{ session('status') }}
+    <div class="row">
+      <div class="col-2">
+        <h3 style="color:green; text-align: right;">
+          <i class="bi bi-check-circle-fill my-2" style="font-size:2em"></i>
         </h3>
-      </center>
-    @else
-    <form action="/reminder" method="post">
-      @csrf
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="basic-addon1">@</span>
-        <input type="email" class="form-control" name="email" value="{{ old('email') }}"
-               placeholder="Email address" aria-label="Email address" aria-describedby="reminder" 
-               style="height:50px; font-size:1.2em">
-        <input type="hidden" name="registration" value="{{ $registration }}">
-        <input type="hidden" name="expires" value="{{ $expiryDateFormat }}">
-        <button class="btn btn-primary" type="submit" id="reminder">
-          <i class="bi bi-send-fill mx-1"></i>          
-          Remind me 
-        </button>
       </div>
-    </form>
+      <div class="col-10">
+        <h3 style="color:green; text-align: left;">{{ session('status') }}</h3>
+      </div>
+    </div>
+    @else
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-6">
+        <form action="/reminder" method="post">
+          @csrf
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">@</span>
+            <input type="email" class="form-control" name="email" value="{{ old('email') }}"
+                   placeholder="Email address" aria-label="Email address" aria-describedby="reminder" 
+                   style="height:50px; font-size:1.2em">
+            <input type="hidden" name="registration" value="{{ $registration }}">
+            <input type="hidden" name="expires" value="{{ $expiryDateFormat }}">
+            <button class="btn btn-primary" type="submit" id="reminder">
+              <i class="bi bi-send-fill mx-1"></i>          
+              Remind me 
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-3"></div>
+    </div>
     @endif
     @if ($errors->first('email'))
       <span style="color:red">{{ $errors->first('email') }}</span>
     @endif
 
-    <h1 style="text-align:center; margin:30px 0; font-weight: bold">
-      {{ substr($carsInformation['firstUsedDate'], 0, 4) }} 
-      {{ $carsInformation['make'] }} {{ $carsInformation['model'] }} 
-      {{ $carsInformation['fuelType'] }} 
-      in 
-      {{ $carsInformation['primaryColour'] }}
-    </h1> 
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-6">
+        <h2 style="text-align:center; margin:30px 0; font-weight: bold">
+          {{ substr($carsInformation['firstUsedDate'], 0, 4) }} 
+          {{ $carsInformation['make'] }} {{ $carsInformation['model'] }} 
+          {{ $carsInformation['fuelType'] }} 
+          in 
+          {{ $carsInformation['primaryColour'] }}
+        </h2>
+      </div>
+      <div class="col-md-3"></div>
+    </div>
 
     @if ( $expired === 0 )
       <div class="result" style="background-color: green">
